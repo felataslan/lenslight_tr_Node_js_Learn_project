@@ -24,6 +24,7 @@ app.use('/',pageRoute)
 app.use('/photos',photoRoute)
 
 
+
 app.listen(port, () => {
   console.log(`Application running on port: ${port}`);
 });
