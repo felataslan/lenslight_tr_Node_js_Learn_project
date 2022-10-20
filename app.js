@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import conn from './db.js';
 import pageRoute from './route/pageRoute.js'
 import photoRoute from './route/photoRoute.js'
+import userRoute from './route/userRoute.js'
+
 
 dotenv.config();
 
@@ -18,10 +20,14 @@ app.set('view engine', 'ejs');
 //static files middleware
 app.use(express.static('public'));
 app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
 
 // Routes
 app.use('/',pageRoute)
 app.use('/photos',photoRoute)
+app.use('/users',userRoute)
+
 
 
 
