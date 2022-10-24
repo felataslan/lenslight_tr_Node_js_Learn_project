@@ -1,6 +1,4 @@
 const getIndexPage=(req,res)=>{
-
-    console.log('REQUEST ',req.user)
     res.render('index',{
         link:'index',
     });
