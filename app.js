@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import pageRoute from './route/pageRoute.js'
 import photoRoute from './route/photoRoute.js'
 import userRoute from './route/userRoute.js'
+import {checkUser} from './middlewares/authMiddleware.js'
 
 
 dotenv.config();
@@ -25,7 +26,9 @@ app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 
 
+
 // Routes
+app.get('*',checkUser)
 app.use('/',pageRoute)
 app.use('/photos',photoRoute)
 app.use('/users',userRoute)
