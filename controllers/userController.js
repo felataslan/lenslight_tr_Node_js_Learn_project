@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken' 
+import Photo from '../models/photoModel.js';
 
 const createUser = async (req, res) => {
     // console.log('req Body', req.body)
@@ -89,10 +90,12 @@ return jwt.sign({userId},process.env.JWT_SECRET,{
     expiresIn:'1d',
 });
 };
-const getDashboardPage=(req,res)=>{
-    res.render('dashboard',{
-        link:'dashboard',
+const getDashboardPage = async (req, res) => {
+    const photos = await Photo.find({ user: res.locals.user._id });
+    res.render('dashboard', {
+      link: 'dashboard',
+      photos,
     });
-}
+  };
 
 export { createUser,userLogin,getDashboardPage };

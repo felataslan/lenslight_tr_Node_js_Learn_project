@@ -1,47 +1,48 @@
 import Photo from "../models/photoModel.js";
 
-const createPhoto= async(req,res)=>{
+const createPhoto = async (req, res) => {
     // console.log('req Body', req.body)
     try {
-        const photo= await Photo.create(req.body);
-    res.status(201).json({
-        succeded:true,
-        photo,
-    });
+        await Photo.create({
+            name: req.body.name,
+            description: req.body.description,
+            user: res.locals.user._id,
+        });
+        res.status(201).redirect('/users/dashboard');
     } catch (error) {
         res.status(500).json({
-            succeded:false,
+            succeded: false,
             error
         })
     }
-    
+
 };
-const getAllPhotos= async (req,res)=>{
+const getAllPhotos = async (req, res) => {
     try {
-        const photos= await Photo.find({})
-        res.status(200).render('photos',{
+        const photos = await Photo.find({})
+        res.status(200).render('photos', {
             photos,
-            link:'photos'
+            link: 'photos'
         })
     } catch (error) {
         res.status(500).json({
-            succeded:false,
+            succeded: false,
             error,
         })
     }
 }
-const getAPhoto= async (req,res)=>{
+const getAPhoto = async (req, res) => {
     try {
-        const photo= await Photo.findById({ _id: req.params.id});
-        res.status(200).render('photo',{
+        const photo = await Photo.findById({ _id: req.params.id });
+        res.status(200).render('photo', {
             photo,
-            link:'photos',
+            link: 'photos',
         });
     } catch (error) {
         res.status(500).json({
-            succeded:false,
+            succeded: false,
             error,
         })
     }
 }
-export {createPhoto,getAllPhotos,getAPhoto};
+export { createPhoto, getAllPhotos, getAPhoto };
