@@ -25,13 +25,6 @@ const createUser = async (req, res) => {
 
         console.log('Errors:',errors2);
 
-
-
-
-
-
-
-
         res.status(400).json(errors2)
     }
 
