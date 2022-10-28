@@ -2,6 +2,8 @@ import mongoose from 'mongoose'
 
 const  {Schema} =mongoose;
 
+
+// create database table for photograph
 const photoSchema= new Schema({
     name:{
         type:String,

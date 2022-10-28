@@ -1,5 +1,6 @@
 import Photo from "../models/photoModel.js";
 
+// photo added place  here 
 const createPhoto = async (req, res) => {
     // console.log('req Body', req.body)
     try {
@@ -17,6 +18,8 @@ const createPhoto = async (req, res) => {
     }
 
 };
+
+//listed all photos here do it
 const getAllPhotos = async (req, res) => {
     try {
         const photos = await Photo.find({})
@@ -31,6 +34,7 @@ const getAllPhotos = async (req, res) => {
         })
     }
 }
+// get user photos here 
 const getAPhoto = async (req, res) => {
     try {
         const photo = await Photo.findById({ _id: req.params.id });

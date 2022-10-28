@@ -1,7 +1,7 @@
 import User from "../models/userModel.js";
 import jwt from 'jsonwebtoken'
 
-
+// check user id have database by login 
 const checkUser = (req, res, next) => {
     const token = req.cookies.jwt;
     if (token) {
@@ -25,7 +25,7 @@ const checkUser = (req, res, next) => {
 }
 
 
-
+// check have token have or not by login system 
 const authenticateToken = async (req, res, next) => {
     // const authHeader = req.headers['authorization']
     // // console.log('authHeader: ',authHeader)

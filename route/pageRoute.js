@@ -5,6 +5,8 @@ import {getIndexPage,getAboutPage,getRegisterPage,getLoginPage,getLogout} from '
 
 
 
+
+// All pages router with controller 
 const router = express.Router();
 
 router.route('/').get(getIndexPage);

@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import validator from 'validator'
 
 const {Schema}=mongoose;
-
+// create table for user database 
 const userSchema= new Schema({
     username:{
         type:String,

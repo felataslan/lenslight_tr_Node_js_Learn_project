@@ -3,6 +3,8 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken' 
 import Photo from '../models/photoModel.js';
 
+
+//Create user 
 const createUser = async (req, res) => {
     // console.log('req Body', req.body)
     try {
