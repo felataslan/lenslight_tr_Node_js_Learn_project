@@ -18,8 +18,6 @@ const createPhoto = async (req, res) => {
 
     )
 
-    console.log('Result',result);
-
     try {
         await Photo.create({
             name: req.body.name,
@@ -41,7 +39,9 @@ const createPhoto = async (req, res) => {
 //listed all photos here do it
 const getAllPhotos = async (req, res) => {
     try {
-        const photos = await Photo.find({})
+        const photos = res.locals.user
+        ? await Photo.find({ user: { $ne: res.locals.user._id } })
+        : await Photo.find({})
         res.status(200).render('photos', {
             photos,
             link: 'photos'
