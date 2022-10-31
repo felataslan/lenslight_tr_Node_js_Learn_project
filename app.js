@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import conn from './db.js';
+import methodOverride  from 'method-override';
 import cookieParser from 'cookie-parser';
 import pageRoute from './route/pageRoute.js'
 import photoRoute from './route/photoRoute.js'
@@ -35,6 +36,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 app.use(fileUpload({useTempFiles:true}))
+app.use(methodOverride('_method',{
+  methods:['POST','GET'],
+}))
 
 
 
