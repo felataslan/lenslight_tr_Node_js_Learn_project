@@ -24,7 +24,19 @@ const userSchema= new Schema({
         type:String,
         required:[true,'Password  area is required'],
         minLength:[4,'At least 4 characters'],
-    }
+    },
+    followers:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'User',
+        },
+    ],
+    followings:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'User',
+        },
+    ]
     
 },
 {
@@ -32,16 +44,14 @@ const userSchema= new Schema({
 }
 
 );
+
+//Password hash function here 
 userSchema.pre('save',function(next){
 const user=this;
-// console.log('user pass 1',user.password)
 bcrypt.hash(user.password,10,(err,hash)=>{
-
-    user.password=hash
-    // console.log('user pass 2',user.password)
+    user.password=hash;
     next();
 })
-
 })
 const User= mongoose.model('User',userSchema)
 
