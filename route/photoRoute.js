@@ -20,4 +20,9 @@ router
 .get(photoController.getAPhoto);
 
 
+router
+.route('/:id')
+.delete(photoController.deletePhoto);
+
+
 export default router;
